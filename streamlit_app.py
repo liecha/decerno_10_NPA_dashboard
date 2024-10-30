@@ -101,7 +101,7 @@ filtered_gdp_df = gdp_df[
     & (from_year <= gdp_df['Year'])
 ]
 
-st.header('NPA översikt', divider='gray')
+st.header('FTI översikt', divider='gray')
 
 ''
 
