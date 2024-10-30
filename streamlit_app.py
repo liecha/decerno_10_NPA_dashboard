@@ -75,7 +75,7 @@ min_value = gdp_df['Year'].min()
 max_value = gdp_df['Year'].max()
 
 from_year, to_year = st.slider(
-    'Which years are you interested in?',
+    'Vilket åt vill du undersöka?',
     min_value=min_value,
     max_value=max_value,
     value=[min_value, max_value])
@@ -83,10 +83,10 @@ from_year, to_year = st.slider(
 countries = gdp_df['Country Code'].unique()
 
 if not len(countries):
-    st.warning("Select at least one country")
+    st.warning("Välj minst ett material")
 
 selected_countries = st.multiselect(
-    'Which countries would you like to view?',
+    'Vilket material vill du undersöka?',
     countries,
     ['DEU', 'FRA', 'GBR', 'BRA', 'MEX', 'JPN'])
 
