@@ -40,11 +40,7 @@ st.line_chart(
     df_plast,
     x='month',
     y='weight',
-    color=alt.Color('year',
-        scale=alt.Scale(
-            domain=['antelope', 'velociraptor'],
-            range=['blue', 'red'])
-            )
+    color='year',
 )
 
 st.subheader('Metall')
