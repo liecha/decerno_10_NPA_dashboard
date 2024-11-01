@@ -82,5 +82,3 @@ st.line_chart(
 
 my_first_year = df_results[df_results['year'] == my_from_year]
 my_last_year = df_results[df_results['year'] == my_to_year]
-
-st.header(f'Weight in {my_to_year}', divider='gray')
