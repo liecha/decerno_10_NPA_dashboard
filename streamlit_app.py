@@ -109,7 +109,7 @@ st.line_chart(
     df_plast,
     x='year',
     y='weight',
-    color='materialslag_namn', # Kommun namn
+    color='kommun_namn', # Kommun namn
 )
 
 my_first_year = df_results[df_results['year'] == my_from_year]
