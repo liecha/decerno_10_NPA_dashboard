@@ -1,8 +1,7 @@
 import streamlit as st
 import pandas as pd
-import math
 
-df_results = pd.read_csv('data/result_sum_weight_kommun.csv')
+df_results = pd.read_csv('data/result_kommun.csv')
 print(df_results)
 
 my_min = df_results['year'].min()
