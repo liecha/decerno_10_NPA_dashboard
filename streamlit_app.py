@@ -92,24 +92,41 @@ if not len(kommun):
     st.warning("Välj minst en kommun")
 
 selected_kommun = st.multiselect(
-    'Vilket material vill du undersöka?',
+    'Vilken kommun vill du undersöka?',
     kommun,
     ['Ale', 'Alingsoas', 'Alvesta'])
 
-# Filter the data
-filtered_result_df = df_results[
+
+material = df_results['materialslag_namn'].unique()
+print(material)
+
+if not len(material):
+    st.warning("Välj minst ett material")
+
+selected_material = st.multiselect(
+    'Vilket material vill du undersöka?',
+    material,
+    ['Plast' 'Metall' 'Kartong' 'Tidningar' 'Glas'])
+
+# Filter the data year
+filtered_result_df_year = df_results[
     (df_results['kommun_namn'].isin(selected_kommun))
     & (df_results['year'] <= my_to_year)
     & (my_from_year <= df_results['year'])
 ]
 
+# Filter the data year
+filtered_result_df_year_materials = filtered_result_df_year[
+    (filtered_result_df_year['materialslag_namn'].isin(selected_material))
+]
+
 st.header('FTI översikt', divider='gray')
 
 st.line_chart(
-    filtered_result_df,
+    filtered_result_df_year_materials,
     x='year',
     y='weight',
-    color='kommun_namn', # Kommun namn
+    color='materialslag_namn', # Kommun namn
 )
 
 my_first_year = df_results[df_results['year'] == my_from_year]
