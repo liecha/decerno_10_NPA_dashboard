@@ -84,27 +84,3 @@ my_first_year = df_results[df_results['year'] == my_from_year]
 my_last_year = df_results[df_results['year'] == my_to_year]
 
 st.header(f'Weight in {my_to_year}', divider='gray')
-
-
-cols = st.columns(4)
-
-for i, kommun in enumerate(selected_kommun):
-    col = cols[i % len(cols)]
-
-    with col:
-        first_weight = my_first_year[my_first_year['kommun_namn'] == kommun]['weight']
-        last_weight = my_last_year[my_last_year['kommun_namn'] == kommun]['weight']
-
-        if math.isnan(first_weight):
-            growth = 'n/a'
-            delta_color = 'off'
-        else:
-            growth = f'{last_weight / first_weight:,.2f}x'
-            delta_color = 'normal'
-
-        st.metric(
-            label=f'{kommun} weight',
-            value=f'{last_weight:,.0f}B',
-            delta=growth,
-            delta_color=delta_color
-        )
