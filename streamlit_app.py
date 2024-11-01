@@ -112,6 +112,38 @@ st.line_chart(
     color='kommun_namn', # Kommun namn
 )
 
+df_metall = filtered_result_df_year[filtered_result_df_year['materialslag_namn'] == 'Metall'] 
+st.line_chart(
+    df_metall,
+    x='year',
+    y='weight',
+    color='kommun_namn', # Kommun namn
+)
+
+df_kartong = filtered_result_df_year[filtered_result_df_year['materialslag_namn'] == 'Kartong'] 
+st.line_chart(
+    df_kartong,
+    x='year',
+    y='weight',
+    color='kommun_namn', # Kommun namn
+)
+
+df_tidningar = filtered_result_df_year[filtered_result_df_year['materialslag_namn'] == 'Tidningar'] 
+st.line_chart(
+    df_tidningar,
+    x='year',
+    y='weight',
+    color='kommun_namn', # Kommun namn
+)
+
+df_glas = filtered_result_df_year[filtered_result_df_year['materialslag_namn'] == 'Glas'] 
+st.line_chart(
+    df_glas,
+    x='year',
+    y='weight',
+    color='kommun_namn', # Kommun namn
+)
+
 my_first_year = df_results[df_results['year'] == my_from_year]
 my_last_year = df_results[df_results['year'] == my_to_year]
 
