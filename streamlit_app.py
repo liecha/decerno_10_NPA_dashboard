@@ -94,7 +94,7 @@ selected_kommun = st.multiselect(
     'Vilken kommun vill du undersöka?',
     kommun,
     ['Ale'])
-
+'''
 material = df_results['materialslag_namn'].unique()
 print(material)
 
@@ -105,23 +105,23 @@ selected_material = st.multiselect(
     'Vilket material vill du undersöka?',
     material,
     ['Plast' 'Metall' 'Kartong' 'Tidningar' 'Glas'])
-
+'''
 # Filter the data year
 filtered_result_df_year = df_results[
     (df_results['kommun_namn'].isin(selected_kommun))
     & (df_results['year'] <= my_to_year)
     & (my_from_year <= df_results['year'])
 ]
-
+'''
 # Filter the data year
 filtered_result_df_year_materials = filtered_result_df_year[
     (filtered_result_df_year['materialslag_namn'].isin(selected_material))
 ]
-
+'''
 st.header('FTI översikt', divider='gray')
 
 st.line_chart(
-    filtered_result_df_year_materials,
+    filtered_result_df_year,
     x='year',
     y='weight',
     color='materialslag_namn', # Kommun namn
