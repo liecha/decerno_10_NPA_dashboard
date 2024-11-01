@@ -44,12 +44,12 @@ def get_gdp_data():
     # - Year
     # - GDP
     #
-    # So let's pivot all those year-columns into two: Year and GDP
+    # So let's pivot all those year-columns into two: Year and weight
     gdp_df = raw_gdp_df.melt(
-        ['Country Code'],
+        ['Country Code'], # kommun_namn
         [str(x) for x in range(MIN_YEAR, MAX_YEAR + 1)],
-        'Year',
-        'GDP',
+        'Year', # year
+        'GDP',  # weight
     )
 
     # Convert years from string to integers
@@ -58,6 +58,7 @@ def get_gdp_data():
     return gdp_df
 
 gdp_df = get_gdp_data()
+print(gdp_df)
 
 # -----------------------------------------------------------------------------
 # Draw the actual page
@@ -70,6 +71,81 @@ gdp_df = get_gdp_data()
 # Add some spacing
 ''
 ''
+df_results = pd.read_csv('data/result_sum_weight_kommun.csv')
+print(df_results)
+
+my_min = df_results['year'].min()
+my_max = df_results['year'].max()
+print(my_min)
+print(my_max)
+
+my_from_year, my_to_year = st.slider(
+    'Vilket år vill du undersöka?',
+    min_value=my_min,
+    max_value=my_max,
+    value=[my_min, my_max])
+
+kommun = df_results['kommun_namn'].unique()
+print(kommun)
+
+if not len(kommun):
+    st.warning("Välj minst en kommun")
+
+selected_kommun = st.multiselect(
+    'Vilket material vill du undersöka?',
+    kommun,
+    ['Ale', 'Alingsoas', 'Alvesta'])
+
+# Filter the data
+filtered_result_df = df_results[
+    (df_results['kommun_namn'].isin(selected_kommun))
+    & (df_results['year'] <= my_to_year)
+    & (my_from_year <= df_results['year'])
+]
+
+st.header('FTI översikt', divider='gray')
+
+st.line_chart(
+    filtered_result_df,
+    x='year',
+    y='weight',
+    color='kommun_namn', # Kommun namn
+)
+
+my_first_year = df_results[df_results['year'] == my_from_year]
+my_last_year = df_results[df_results['year'] == my_to_year]
+
+st.header(f'Weight in {my_to_year}', divider='gray')
+
+
+cols = st.columns(4)
+
+for i, kommun in enumerate(selected_kommun):
+    col = cols[i % len(cols)]
+
+    with col:
+        first_weight = my_first_year[my_first_year['kommun_namn'] == kommun]['weight'].iat[0] / 1000000000
+        last_weight = my_last_year[my_last_year['kommun_namn'] == kommun]['weight'].iat[0] / 1000000000
+
+        if math.isnan(first_weight):
+            growth = 'n/a'
+            delta_color = 'off'
+        else:
+            growth = f'{last_weight / first_weight:,.2f}x'
+            delta_color = 'normal'
+
+        st.metric(
+            label=f'{kommun} weight',
+            value=f'{last_weight:,.0f}B',
+            delta=growth,
+            delta_color=delta_color
+        )
+
+
+
+
+
+
 
 min_value = gdp_df['Year'].min()
 max_value = gdp_df['Year'].max()
