@@ -40,7 +40,7 @@ st.line_chart(
     df_plast,
     x='month',
     y='weight',
-    color='year',
+    color='year', # Kommun namn
 )
 
 st.subheader('Metall')
