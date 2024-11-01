@@ -123,8 +123,8 @@ for i, kommun in enumerate(selected_kommun):
     col = cols[i % len(cols)]
 
     with col:
-        first_weight = my_first_year[my_first_year['kommun_namn'] == kommun]['weight'].iat[0] / 1000000000
-        last_weight = my_last_year[my_last_year['kommun_namn'] == kommun]['weight'].iat[0] / 1000000000
+        first_weight = my_first_year[my_first_year['kommun_namn'] == kommun]['weight'].iat[0]
+        last_weight = my_last_year[my_last_year['kommun_namn'] == kommun]['weight'].iat[0]
 
         if math.isnan(first_weight):
             growth = 'n/a'
