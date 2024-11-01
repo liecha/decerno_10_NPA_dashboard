@@ -104,7 +104,7 @@ filtered_result_df_year = df_results[
 
 st.header('FTI översikt', divider='gray')
 
-st.caption('Plast')
+st.subheader('Plast')
 df_plast = filtered_result_df_year[filtered_result_df_year['materialslag_namn'] == 'Plast'] 
 st.line_chart(
     df_plast,
@@ -113,7 +113,7 @@ st.line_chart(
     color='kommun_namn', # Kommun namn
 )
 
-st.caption('Metall')
+st.subheader('Metall')
 df_metall = filtered_result_df_year[filtered_result_df_year['materialslag_namn'] == 'Metall'] 
 st.line_chart(
     df_metall,
@@ -122,7 +122,7 @@ st.line_chart(
     color='kommun_namn', # Kommun namn
 )
 
-st.caption('Kartong')
+st.subheader('Kartong')
 df_kartong = filtered_result_df_year[filtered_result_df_year['materialslag_namn'] == 'Kartong'] 
 st.line_chart(
     df_kartong,
@@ -131,7 +131,7 @@ st.line_chart(
     color='kommun_namn', # Kommun namn
 )
 
-st.caption('Tidningar')
+st.subheader('Tidningar')
 df_tidningar = filtered_result_df_year[filtered_result_df_year['materialslag_namn'] == 'Tidningar'] 
 st.line_chart(
     df_tidningar,
@@ -140,7 +140,7 @@ st.line_chart(
     color='kommun_namn', # Kommun namn
 )
 
-st.caption('Glas')
+st.subheader('Glas')
 df_glas = filtered_result_df_year[filtered_result_df_year['materialslag_namn'] == 'Glas'] 
 st.line_chart(
     df_glas,
