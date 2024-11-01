@@ -40,7 +40,7 @@ st.line_chart(
     df_plast,
     x='month',
     y='weight',
-    color='kommun_namn', # Kommun namn
+    color='year', # Kommun namn
 )
 
 st.subheader('Metall')
@@ -49,7 +49,7 @@ st.line_chart(
     df_metall,
     x='month',
     y='weight',
-    color='kommun_namn', # Kommun namn
+    color='year', # Kommun namn
 )
 
 st.subheader('Kartong')
@@ -58,7 +58,7 @@ st.line_chart(
     df_kartong,
     x='month',
     y='weight',
-    color='kommun_namn', # Kommun namn
+    color='year', # Kommun namn
 )
 
 st.subheader('Tidningar')
@@ -67,7 +67,7 @@ st.line_chart(
     df_tidningar,
     x='month',
     y='weight',
-    color='kommun_namn', # Kommun namn
+    color='year', # Kommun namn
 )
 
 st.subheader('Glas')
@@ -76,7 +76,7 @@ st.line_chart(
     df_glas,
     x='month',
     y='weight',
-    color='kommun_namn', # Kommun namn
+    color='year', # Kommun namn
 )
 
 my_first_year = df_results[df_results['year'] == my_from_year]
