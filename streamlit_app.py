@@ -1,4 +1,6 @@
 import streamlit as st
+import altair as alt
+import plotly.express as px
 import pandas as pd
 
 df_results = pd.read_csv('data/result_kommun.csv')
@@ -36,11 +38,29 @@ st.header('FTI översikt', divider='gray')
 
 st.subheader('Plast')
 df_plast = filtered_result_df_year[filtered_result_df_year['materialslag_namn'] == 'Plast'] 
+def make_lineplot(source, input_y, input_x):   
+    custom_chart = alt.Chart(source).mark_line().encode(
+        x=input_x, # month
+        y=input_y, # weight
+        color=alt.Color('year',
+                scale=alt.Scale(
+                    domain=['antelope', 'velociraptor'],
+                    range=['blue', 'red'])
+                    )
+    )
+    return custom_chart
+lineplot_score = make_lineplot(df_plast, 'weight', 'month')
+st.altair_chart(lineplot_score, use_container_width=True)
+
 st.line_chart(
     df_plast,
     x='month',
     y='weight',
-    color='year', # Kommun namn
+    color=alt.Color('year',
+        scale=alt.Scale(
+            domain=['antelope', 'velociraptor'],
+            range=['blue', 'red'])
+            )
 )
 
 st.subheader('Metall')
