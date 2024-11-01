@@ -104,8 +104,9 @@ filtered_result_df_year = df_results[
 
 st.header('FTI översikt', divider='gray')
 
+df_plast = filtered_result_df_year[filtered_result_df_year['materialslag_namn'] == 'Plast'] 
 st.line_chart(
-    filtered_result_df_year,
+    df_plast,
     x='year',
     y='weight',
     color='materialslag_namn', # Kommun namn
