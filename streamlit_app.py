@@ -1,6 +1,5 @@
 import streamlit as st
 import altair as alt
-import plotly.express as px
 import pandas as pd
 
 df_results = pd.read_csv('data/result_kommun.csv')
