@@ -86,7 +86,6 @@ my_from_year, my_to_year = st.slider(
     value=[my_min, my_max])
 
 kommun = df_results['kommun_namn'].unique()
-print(kommun)
 
 if not len(kommun):
     st.warning("Välj minst en kommun")
@@ -94,8 +93,7 @@ if not len(kommun):
 selected_kommun = st.multiselect(
     'Vilken kommun vill du undersöka?',
     kommun,
-    ['Ale', 'Alingsoas', 'Alvesta'])
-
+    ['Ale'])
 
 material = df_results['materialslag_namn'].unique()
 print(material)
