@@ -40,7 +40,7 @@ st.line_chart(
     df_plast,
     x='month',
     y='weight',
-    color=["#FF0000", "#0000FF"],
+    color='year',
 )
 
 st.subheader('Metall')
