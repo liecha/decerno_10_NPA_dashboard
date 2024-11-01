@@ -38,7 +38,7 @@ st.subheader('Plast')
 df_plast = filtered_result_df_year[filtered_result_df_year['materialslag_namn'] == 'Plast'] 
 st.line_chart(
     df_plast,
-    x='year',
+    x='month',
     y='weight',
     color='kommun_namn', # Kommun namn
 )
